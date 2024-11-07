@@ -1,6 +1,3 @@
-// 0, 1, 1, 1
-
-
 setTimeout(() => console.log('Timeout'), 0)
 
 const cache = new Map()
@@ -13,14 +10,11 @@ function fib(n) {
         if (cache.has(n)) {
             return resolve(cache.get(n))
         }
-        setImmediate(() =>
-            Promise.all([fib(n - 1), fib(n - 2)])
-                .then(([fib1, fib2]) => {
-                    cache.set(n, fib1 + fib2)
-                    resolve(fib1 + fib2)
-                })
-        )
+        setImmediate(() => fib(n - 1).then((fib1) => fib(n - 2).then((fib2) => {
+            cache.set(n, fib1 + fib2)
+            resolve(fib1 + fib2)
+        })))
     })
 }
 
-fib(10).then((res) => console.log(res))
+fib(1000).then((res) => console.log(res))
