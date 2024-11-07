@@ -1,4 +1,5 @@
 // 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55
+
 function info(text) {
     console.log(text, performance.now().toFixed(2))
 }
@@ -8,6 +9,7 @@ info('Program start')
 setTimeout(() => info('Timeout'), 0)
 
 function fib(n) {
+
     if (n === 1 || n === 1) {
         return n
     }
@@ -22,5 +24,9 @@ function fib(n) {
     return sum
 }
 
-console.log(fib(1000))
+
+console.log(fib(10))
+
+
 info('Program end')
+
